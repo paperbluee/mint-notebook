@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e0ece3">
+<meta name="description" content="薄巧配色的四六级单词默写本。每天 25 词，双向默写、一键批改和次日复习。">
+<title>薄巧 · 四六级单词默写本</title>
+<link rel="icon" href="mint.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="薄巧默写本">
+<link rel="stylesheet" href="style.css">
+<script type="module" src="app.js"></script>
+<script defer src="pwa.js"></script>
+</head>
+<body>
+<header class="topbar"><div class="topinner">
+  <a class="brand" href="./"><img src="mint.svg" alt=""><span>薄巧<span class="brand-en">MINT &amp; COCOA</span></span></a>
+  <div class="topright"><span class="edition">CET STUDY SERIES</span><button type="button" id="open-import" class="outline"><span data-icon="import"></span>六级词表管理</button></div>
+</div></header>
+<main class="wrap">
+  <section class="cover" aria-label="四六级词汇学习计划">
+    <div class="cover-copy"><div class="kicker"><i></i> THE VOCABULARY JOURNAL</div>
+    <h1 id="cover-title">四六级单词默写本</h1>
+    <p class="tagline">每天 25 词，给记忆留一页空白。</p>
+    <div class="level-select" role="group" aria-label="选择考试词表"><button type="button" id="level-four" aria-pressed="false">英语四级 <small>CET-4</small></button><button type="button" id="level-six" aria-pressed="true">英语六级 <small>CET-6</small></button></div>
+    <div class="cover-meta"><span data-icon="calendar"></span><span>2026.11.11 — 12.10</span><span class="meta-divider"></span><span>30 天 · 750 词</span></div></div>
+    <div class="cover-art" aria-hidden="true"><div class="card-paper"><small>REVIEW CARD</small><div class="dots"></div></div><div class="card-mint"><div class="card-inner"><small>THE STUDY CLUB</small><b>Mint <em>&amp;</em><br>Cocoa</b><span>VOCABULARY VOL. 01</span></div></div><span class="spark spark-a">✦</span><span class="spark spark-b">✧</span><span class="art-caption">FIG. 01 &nbsp; / &nbsp; THE MINT EDITION</span></div>
+  </section>
+  <details class="offline-panel">
+    <summary><span class="offline-symbol" aria-hidden="true">↓</span><strong>iPad 离线背词</strong><span id="offline-status" role="status">正在检查离线词表…</span></summary>
+    <div class="offline-help">
+      <p>在 iPad 的 Safari 打开本页，点「分享」→「添加到主屏幕」。如果看到「作为网页 App 打开」，请开启它。</p>
+      <p>添加后，保持联网，从主屏幕打开「薄巧默写本」，看到「已可离线使用」就可以断网。作答和复习记录保存在你打开应用的设备和浏览环境中。</p>
+      <button id="offline-retry" class="outline" type="button" hidden>重新准备离线词表</button>
+    </div>
+  </details>
+  <div class="workspace">
+    <aside class="rail">
+      <section class="rail-card" aria-labelledby="calendar-label">
+        <div class="rail-title"><span class="rail-icon" data-icon="calendar"></span><div><h2 id="calendar-label">学习日历</h2><span>STUDY CALENDAR</span></div></div>
+        <div id="calendar"></div>
+        <div class="legend"><span><i></i>当前页</span><span><i></i>有作答</span><span><i></i>待复习</span></div>
+        <button type="button" id="today" class="today"><span data-icon="target"></span>回到今日<span class="arrow" data-icon="right"></span></button>
+        <p id="clock-note" class="clock-note"></p>
+      </section>
+      <div class="note"><span class="note-star">✦</span><div><b>默写小贴士</b><p>先看左边记忆，再隐藏答案，在右边填空。点列头「批改」查看结果。记得不牢的词，可以点行首的星标。</p></div></div>
+    </aside>
+    <section class="notebook" aria-labelledby="day-title">
+      <div class="notebook-top"><div class="book-label"><span data-icon="book"></span> DAILY WORD LIST</div><div class="nav"><button type="button" id="prev" aria-label="前一天" data-icon="left"></button><button type="button" id="next" aria-label="后一天" data-icon="right"></button></div></div>
+      <div class="sheet-heading"><div class="list-heading"><h2 id="day-title"></h2><div><span id="date"></span><span id="date-tag"></span></div></div><div class="counter"><strong id="progress">0</strong><span> / 25</span><small>已完成词条</small></div></div>
+      <details id="review-panel" class="review-panel">
+        <summary><span class="review-icon" data-icon="star"></span><span id="review-title">昨日复习</span><span id="review-count" class="review-count"></span><span class="review-arrow" data-icon="right"></span></summary>
+        <div id="review-content" class="review-content"></div>
+      </details>
+      <div class="sheet-tools"><span id="source-badge"></span><button type="button" id="grade-all" class="primary"><span data-icon="check"></span>一键批改</button></div>
+      <div class="table-scroll" tabindex="0" aria-label="四栏默写表，可横向滑动">
+        <table><colgroup><col class="num"><col><col><col><col></colgroup><thead id="table-head"></thead><tbody id="table-body"></tbody></table>
+      </div>
+      <div class="sheet-foot"><span><span data-icon="save"></span> <span id="storage-label">作答自动保存在此浏览器</span></span><span>每页 25 词 · 北京时间零点切换今日</span></div>
+      <p id="feedback" class="feedback" role="status"></p>
+    </section>
+  </div>
+  <footer><span>薄巧 · MINT &amp; COCOA</span><span>VOCABULARY JOURNAL &nbsp; / &nbsp; VOL. 01</span></footer>
+</main>
+<dialog id="import-dialog" aria-labelledby="import-title">
+  <form id="import-form"><div class="dialog-head"><div><span class="kicker">YOUR WORD LIST</span><h2 id="import-title">词表管理</h2></div><button type="button" id="close-import" class="outline" aria-label="关闭">✕</button></div>
+    <p id="source-detail"></p>
+    <p>要使用书中词表，请按顺序导入至少 750 条。每行格式为「英文单词、Tab、中文释义」，接受 TSV 或 CSV。多义项可用「；」分隔，系统将使用前 750 条，每天分配 25 条。两套词表的作答分别保存。</p>
+    <label class="file-label">选择词表文件 <input type="file" id="word-file" accept=".txt,.tsv,.csv,text/plain,text/tab-separated-values,text/csv"></label>
+    <label for="word-paste">或直接粘贴词表</label>
+    <textarea id="word-paste" rows="5" placeholder="abandon&#9;放弃；抛弃"></textarea>
+    <p id="import-result" role="status"></p>
+    <div class="dialog-actions"><button type="button" id="reset-source" class="outline">使用内置词表</button><button class="primary" type="submit">导入并使用</button></div>
+  </form>
+</dialog>
+</body>
+</html>
