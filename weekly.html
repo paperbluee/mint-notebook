@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e0ece3">
+<meta name="description" content="薄巧四六级默写本的每周词汇测试。每周 175 词，随机抽 50 题，满分 100。">
+<title>薄巧 · 每周词汇测试</title>
+<link rel="icon" href="mint.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="weekly.css">
+<script type="module" src="weekly.js"></script>
+<script defer src="pwa.js"></script>
+</head>
+<body>
+<header class="topbar"><div class="topinner">
+  <a class="brand" href="./"><img src="mint.svg" alt=""><span>薄巧<span class="brand-en">MINT &amp; COCOA</span></span></a>
+  <a class="outline" href="./">← 返回默写本</a>
+</div></header>
+<main class="wrap quiz-wrap">
+  <section class="cover quiz-cover">
+    <div class="cover-copy">
+      <div class="kicker"><i></i> THE WEEKLY CHECK</div>
+      <h1>每周词汇测试</h1>
+      <p class="tagline">七天背过的词，换个方向再认一次。</p>
+      <div class="cover-meta"><span>175 词 / 周</span><span class="meta-divider"></span><span>50 题 × 2 分</span><span class="meta-divider"></span><span>满分 100</span></div>
+    </div>
+    <div class="quiz-stamp" aria-hidden="true"><span>WEEKLY<br>VOCABULARY</span><b>50</b><span>QUESTIONS</span></div>
+  </section>
+  <section id="setup" class="quiz-card" aria-labelledby="setup-title">
+    <div class="quiz-card-head"><h2 id="setup-title">选择测试</h2><span class="eyebrow">2026 · NOV–DEC</span></div>
+    <div class="level-select quiz-levels" role="group" aria-label="选择考试词表">
+      <button type="button" id="four" aria-pressed="false">英语四级 <small>CET-4</small></button>
+      <button type="button" id="six" aria-pressed="true">英语六级 <small>CET-6</small></button>
+    </div>
+    <div id="weeks" class="week-grid" role="group" aria-label="选择测试周"></div>
+    <p id="bank-note" class="quiz-note"></p>
+    <p class="quiz-note">每套 17 道看中文写英文、17 道看英文写中文、16 道拼写辨析。中文填出任一参考义项即可。</p>
+    <p class="quiz-note">12.09–12.10 共两天，留在默写本复习。</p>
+    <div class="quiz-actions"><button id="start" class="primary" type="button">开始测试</button><p id="setup-error" role="status"></p></div>
+  </section>
+  <section id="paper" class="quiz-card" aria-labelledby="prompt" hidden>
+    <div class="quiz-card-head"><span id="test-label" class="eyebrow"></span><button id="leave" type="button" class="outline">保存并返回</button></div>
+    <div class="quiz-progress"><span id="answered"></span><progress id="progress" max="50" value="0" aria-label="已作答题数"></progress></div>
+    <div id="question" class="question">
+      <p id="question-meta" class="eyebrow"></p>
+      <h2 id="prompt" tabindex="-1"></h2>
+      <div id="response"></div>
+    </div>
+    <div class="quiz-nav">
+      <button id="prev-question" class="outline" type="button">← 上一题</button>
+      <button id="next-question" class="primary" type="button">下一题 →</button>
+    </div>
+    <div id="question-map" class="question-map" role="group" aria-label="跳转题号"></div>
+    <div class="quiz-submit"><button id="submit" class="outline" type="button">交卷批改</button><span id="save-note">进度保存在此浏览器</span></div>
+  </section>
+  <section id="results" class="quiz-card" aria-labelledby="result-title" hidden>
+    <div class="quiz-card-head"><h2 id="result-title" tabindex="-1">测试结果</h2><span id="result-label" class="eyebrow"></span></div>
+    <div class="score-panel"><div><strong id="score"></strong><span> / 100</span></div><p id="score-detail"></p></div>
+    <div class="quiz-actions"><button id="retry" type="button" class="primary">重新抽一套</button><button id="back" type="button" class="outline">返回选周</button></div>
+    <h3 id="correction-title">错题回顾</h3><ol id="corrections" class="corrections"></ol>
+  </section>
+  <footer><span>薄巧 · MINT &amp; COCOA</span><span id="offline-status" role="status">正在检查离线词表…</span></footer>
+  <button id="offline-retry" type="button" class="outline" hidden>重新准备离线词表</button>
+</main>
+<dialog id="submit-dialog" aria-labelledby="submit-title">
+  <form method="dialog"><h2 id="submit-title">交卷批改</h2><p id="submit-copy"></p><div class="dialog-actions"><button class="outline" value="cancel" autofocus>继续作答</button><button class="primary" value="submit">确认交卷</button></div></form>
+</dialog>
+</body>
+</html>

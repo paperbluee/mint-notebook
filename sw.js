@@ -1,11 +1,11 @@
 const base = new URL(self.registration.scope);
 const prefix = 'mint-notebook-pages:' + base.pathname + ':';
 // Bump the cache version when the notebook's offline files change.
-const cacheName = prefix + '1';
+const cacheName = prefix + '2';
 const files = [
   './', 'style.css', 'app.js', 'words.js', 'cet4.js', 'mint.svg',
   'pwa.js', 'manifest.webmanifest', 'icon-180.png', 'icon-192.png', 'icon-512.png',
-  'ecdict-license.txt'
+  'ecdict-license.txt', 'grading.js', 'weekly.html', 'weekly.css', 'weekly.js', 'weekly-engine.js'
 ].map(path => new URL(path, base).href);
 const assets = new Set(files);
 const indexPage = new URL('index.html', base).href;
